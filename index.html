@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+
+<body>
+    <main class="container">
+        <article class="joke-card">
+            <div class="joke-content">
+                <div class="joke-area"></div>
+            </div>
+
+            <div class="controls">
+                <div class="input-group">
+                    <div class="select-wrapper">
+                        <select name="categories" id="categories" aria-label="Joke category"></select>
+                        <span class="material-symbols-rounded">category</span>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <select name="types" id="types" aria-label="Joke type"></select>
+                        <span class="material-symbols-rounded">format_quote</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="toggle-switch">
+                        <input type="checkbox" name="Safe-Mode" id="Safe-Mode">
+                        <span class="slider"></span>
+                        <span class="label-text">Safe Mode</span>
+                    </label>
+
+                    <div class="number-input">
+                        <button class="step-btn" aria-label="Decrease amount">-</button>
+                        <input type="number" id="amount" value="1" min="1" max="10" aria-label="Jokes amount" required>
+                        <button class="step-btn" aria-label="Increase amount">+</button>
+                    </div>
+                </div>
+
+                <button type="submit" id="get-new-joke" class="primary-btn">
+                    <span class="material-symbols-rounded">auto_fix</span>
+                    Generate Jokes
+                </button>
+            </div>
+        </article>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

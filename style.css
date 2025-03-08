@@ -1,0 +1,236 @@
+/* Modern CSS with fluid typography and spacing */
+:root {
+  --primary: hsl(210, 80%, 55%);
+  --primary-hover: hsl(210, 80%, 45%);
+  --background: hsl(240, 6%, 97%);
+  --surface: hsl(0, 0%, 100%);
+  --text-primary: hsl(240, 6%, 13%);
+  --text-secondary: hsl(240, 4%, 46%);
+  --border: hsl(240, 6%, 90%);
+  --shadow: 0 8px 24px -8px hsla(240, 6%, 13%, 0.1);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--background);
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.container {
+  width: min(100%, 800px);
+  margin-inline: auto;
+}
+
+.joke-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.joke-content {
+  position: relative;
+  min-height: 200px;
+  background: hsl(240, 6%, 99%);
+  border-radius: calc(var(--radius) * 0.75);
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.joke-area {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.controls {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.select-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+select {
+  width: 100%;
+  padding: 0.875rem 2.5rem 0.875rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 0.5);
+  background: var(--surface);
+  appearance: none;
+  transition: var(--transition);
+}
+
+select:hover {
+  border-color: var(--primary);
+}
+
+select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.material-symbols-rounded {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-primary);
+  pointer-events: none;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.slider {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: hsl(240, 6%, 90%);
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--surface);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+input:checked + .slider {
+  background: var(--primary);
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: none;
+  -moz-appearance: none;
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 0.5);
+  overflow: hidden;
+}
+
+.step-btn {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.step-btn:hover {
+  background: hsl(240, 6%, 95%);
+}
+
+.number-input input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  background: none;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.primary-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: calc(var(--radius) * 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+
+  & > span {
+    color: white;
+  }
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .joke-card {
+    padding: 1.5rem;
+  }
+
+  .joke-content {
+    padding: 1.5rem;
+  }
+
+  .input-group {
+    gap: 0.75rem;
+  }
+}
