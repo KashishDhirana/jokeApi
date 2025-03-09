@@ -113,8 +113,7 @@ class JokeApi {
             }
 
             this.selectedAmount = Number(this.amount.value) || 1
-            // const requestUrl = `${this.baseUrl}/joke/${category}?type=${type}&amount=${this.selectedAmount}${safeMode}`
-            const requestUrl = `${this.baseUrl}/joke/${category}?${(type === 'any' ? '' : `type=${type}`)}&amount=${this.selectedAmount}${safeMode}`
+            const requestUrl = `${this.baseUrl}/joke/${category}?amount=${this.selectedAmount}${type === 'any' ? '' : `&type=${type}`}${safeMode}`
 
             const response = await fetch(requestUrl)
             const data = await response.json()
