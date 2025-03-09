@@ -62,8 +62,9 @@ class JokeApi {
         try {
             const response = await fetch(`${this.baseUrl}/categories`)
             const data = await response.json()
+            const { categories } = data
             this.categoriesSelection.innerHTML = ''
-            data.categories.forEach(category => {
+            categories.forEach(category => {
                 if (!(this.categoriesSelection instanceof HTMLSelectElement)) {
                     throw new Error('Invalid categories selection element')
                 }
@@ -82,8 +83,9 @@ class JokeApi {
         try {
             const response = await fetch(`${this.baseUrl}/info`)
             const data = await response.json()
+            const { types } = data.jokes
             this.typesSelection.innerHTML = ''
-            data.jokes.types.forEach(type => {
+            types.forEach(type => {
                 if (!(this.typesSelection instanceof HTMLSelectElement)) {
                     throw new Error('Invalid types selection element')
                 }
