@@ -69,6 +69,7 @@ class JokeApi {
                     throw new Error('Invalid categories selection element')
                 }
                 const option = new Option(category, category, category === 'Any', category === 'Any')
+                if (option.value === 'Any') option.text = 'Any (Category)'
                 this.categoriesSelection.appendChild(option)
             })
         } catch (err) {
@@ -84,12 +85,12 @@ class JokeApi {
             const response = await fetch(`${this.baseUrl}/info`)
             const data = await response.json()
             const { types } = data.jokes
-            this.typesSelection.innerHTML = ''
+            // this.typesSelection.innerHTML = ''
             types.forEach(type => {
                 if (!(this.typesSelection instanceof HTMLSelectElement)) {
                     throw new Error('Invalid types selection element')
                 }
-                const option = new Option(type, type, type === 'single', type === 'single')
+                const option = new Option(type, type)
                 this.typesSelection.appendChild(option)
             })
         } catch (err) {
@@ -103,7 +104,7 @@ class JokeApi {
         }
         try {
             const category = this.categoriesSelection?.value || 'Any'
-            const type = this.typesSelection?.value || 'single'
+            const type = this.typesSelection?.value || 'any'
             const safeMode = this.safeMode?.checked ? '&safe-mode' : ''
 
             if (!this.amount.checkValidity()) {
@@ -112,7 +113,8 @@ class JokeApi {
             }
 
             this.selectedAmount = Number(this.amount.value) || 1
-            const requestUrl = `${this.baseUrl}/joke/${category}?type=${type}&amount=${this.selectedAmount}${safeMode}`
+            // const requestUrl = `${this.baseUrl}/joke/${category}?type=${type}&amount=${this.selectedAmount}${safeMode}`
+            const requestUrl = `${this.baseUrl}/joke/${category}?${(type === 'any' ? '' : `type=${type}`)}&amount=${this.selectedAmount}${safeMode}`
 
             const response = await fetch(requestUrl)
             const data = await response.json()
